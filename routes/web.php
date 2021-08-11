@@ -16,4 +16,4 @@ use App\Http\Controllers\BlogController;
 */
 
 Route::get('/',[BlogController::class,"index"])->name("index");
-Route::post('/',[BlogController::class,"index"])->name("index.post");
+Route::post('/',[BlogController::class,"addPost"])->name("index.post");
