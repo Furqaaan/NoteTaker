@@ -16,4 +16,10 @@ use App\Http\Controllers\BlogController;
 */
 
 Route::get('/',[BlogController::class,"index"])->name("index");
+
 Route::post('/',[BlogController::class,"addPost"])->name("index.post");
+
+Route::get('edit/{id}',[BlogController::class,"editView"])->name("index.edit.view");
+Route::post('edit/{id}',[BlogController::class,"editPost"])->name("index.edit.post");
+
+Route::get('delete/{id}',[BlogController::class,"deletePost"])->name("index.delete");

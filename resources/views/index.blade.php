@@ -19,7 +19,7 @@
             width: 700px;
             padding: 30px;
             box-sizing: border-box;
-            margin: 30px auto;
+            margin: 40px auto;
             border-bottom: 1px solid #ccc;
         }
 
@@ -47,21 +47,65 @@
         .post-container {
             word-wrap: break-word;
             margin-bottom: -10px;
+            position:relative;
         }
 
         .post-date {
-            padding-bottom: 10px;
+            padding: 3px 12px;
+            position:absolute;
+            top:0px;
+            left:0px;
+            font-size:12px;
+            background: dodgerblue;
+            color: white;
+            font-weight: bold;
+            
+        }
+
+
+        .post-time {
+            padding: 3px 12px;
+            position:absolute;
+            top:0px;
+            left:90px;
+            font-size:12px;
+            background: tomato;
+            color: white;
+            font-weight: bold;
         }
 
         .page-nav {
             width:190px;
             margin: 0 auto;
+
+        }
+
+        .delete-button {
+            font-size: 10px;
+            padding: 4px;
+            font-weight: bold;
+            border-radius: 0;
+            position: absolute;
+            bottom:0 ;
+            right: 0;
+        }
+
+        .edit-button {
+            font-size: 10px;
+            padding: 4px;
+            font-weight: bold;
+            border-radius: 0;
+            position: absolute;
+            bottom:28px ;
+            right: 0;
         }
     </style>
 </head>
 <body>  
     <div class="container">
 
+        {{session()->put("success")}}
+        
         <div class="newpost-container">
             <form method="post">
                 @csrf
@@ -74,9 +118,16 @@
 
         @foreach($posts as $post)
         <div class="post-container">
-            <span class="post-date">{{$post->created_at}}<hr></span>
+            <span class="post-date">{{Str::of($post->created_at)->substr(0,10)}}</span>
+            <span class="post-time">{{Str::of($post->created_at)->substr(10,20)}}</span>
             <div class="post-body">
+                <br>
                 {{$post->post}}
+                <br><br>
+            </div>
+            <div class="post-buttons">
+                <a href="{{url('delete').'/'.$post->post_id}}"><button type="button" class="btn btn-lg btn-danger delete-button">DELETE</button></a>
+                <a href="{{url('edit').'/'.$post->post_id}}"><button type="button" class="btn btn-lg btn-success edit-button">EDIT</button></a>
             </div>
         </div>
         @endforeach
