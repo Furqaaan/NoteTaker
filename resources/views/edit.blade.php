@@ -47,8 +47,8 @@
                 <div class="form-group">
                     <textarea class="form-control" rows="10" name="editpost">@foreach($posts as $post) {{$post->post}} @endforeach</textarea>
                 </div>
-                <a href="{{route('index')}}"><button type="button" class="btn btn-lg btn-success">SAVE</button></a>
-                <button type="submit" class="btn btn-lg btn-danger">CANCEL</button>
+                <button type="submit" class="btn btn-lg btn-success">SAVE</button>
+                <a href="{{route('index')}}"><button type="button" class="btn btn-lg btn-danger">CANCEL</button></a>
             </form>
         </div>
 

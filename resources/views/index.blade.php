@@ -14,6 +14,10 @@
             background-color: #f3f3f3;
         }
 
+        .container {
+            margin: 80px auto !important; 
+        }
+
         .newpost-container,.post-container{
             background-color: white;
             width: 700px;
@@ -21,6 +25,10 @@
             box-sizing: border-box;
             margin: 40px auto;
             border-bottom: 1px solid #ccc;
+        }
+
+        .post-container:hover {
+            box-shadow: 1px 1px 15px #ccc;
         }
 
         .newpost-container::after {
@@ -74,6 +82,17 @@
             font-weight: bold;
         }
 
+        .post-id {
+            padding: 3px 12px;
+            position:absolute;
+            top:0px;
+            right:0px;
+            font-size:12px;
+            background: #0d0d0d;
+            color: white;
+            font-weight: bold;
+        }
+
         .page-nav {
             width:190px;
             margin: 0 auto;
@@ -104,8 +123,6 @@
 <body>  
     <div class="container">
 
-        {{session()->put("success")}}
-        
         <div class="newpost-container">
             <form method="post">
                 @csrf
@@ -118,6 +135,7 @@
 
         @foreach($posts as $post)
         <div class="post-container">
+            <span class="post-id">#{{$post->post_id}}</span>
             <span class="post-date">{{Str::of($post->created_at)->substr(0,10)}}</span>
             <span class="post-time">{{Str::of($post->created_at)->substr(10,20)}}</span>
             <div class="post-body">

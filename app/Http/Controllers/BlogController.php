@@ -41,7 +41,7 @@ class BlogController extends Controller
                 "post" => $request->input("editpost")
             ]);
 
-        return redirect()->route("index")->withSuccess("Successfully edited the note ....");
+        return redirect("/");
     }
 
 
