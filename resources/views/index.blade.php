@@ -14,7 +14,7 @@
             background-color: #f3f3f3;
         }
 
-        .newpost-container,.post-container {
+        .newpost-container,.post-container{
             background-color: white;
             width: 700px;
             padding: 30px;
@@ -52,6 +52,11 @@
         .post-date {
             padding-bottom: 10px;
         }
+
+        .page-nav {
+            width:190px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>  
@@ -75,6 +80,11 @@
             </div>
         </div>
         @endforeach
+
+        <div class="page-nav">
+            <br>
+            {{$posts->links("pagination::bootstrap-4")}}
+        </div>
 
     </div>
 </body>
