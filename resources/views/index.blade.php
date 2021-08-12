@@ -3,6 +3,7 @@
 <head>
     <title>Notes | Home</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <style>
 
         * {
@@ -140,6 +141,37 @@
             bottom:28px ;
             right: 0;
         }
+
+        input[type="file"]::-webkit-file-upload-button {
+            display: none;
+        }
+
+        input[type="file"] {
+            color:white;
+        }
+
+        input[type="file"]::before {
+            content: "add image";
+            background-color: #4D757D;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 10px;
+            border: 0;
+            padding: 10px;
+            display: inline-block;
+        }
+
+        input[type="file"]:hover::before {
+            background-color: #6B757D;
+            cursor: pointer;
+        }
+
+        img {
+            width: 100%;
+
+        }
+
     </style>
 </head>
 <body>  
@@ -148,18 +180,19 @@
         <div class="search-container">
             <form method="get">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="search" placeholder="Search among your notes ...">
+                    <input type="text" class="form-control" name="search" placeholder="Search your notes ...">
                     <button type="submit" class="btn btn-secondary">SEARCH</button>
                 </div>
             </form>
         </div>
 
         <div class="newpost-container">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <textarea class="form-control" rows="3" name="newpost" placeholder="Add a new note ..."></textarea>
+                    <textarea class="form-control" rows="5" name="newpost" placeholder="Add a new note ..."></textarea>
                 </div>
+                <input type="file" name="image-note" value="1">
                 <button type="submit" class="btn btn-lg btn-primary" name="addpost">NOTE</button>
             </form>
         </div>
@@ -172,6 +205,11 @@
             <div class="post-body">
                 <br>
                 {{$post->post}}
+                @if($post->img)
+                    <br><br>
+                    <img class="postimage" src="{{$post->img}}">
+                    <br>
+                @endif
                 <br><br>
             </div>
             <div class="post-buttons">

@@ -131,6 +131,10 @@
             border-radius: 0;
             padding: 6px 10px;
         }
+
+        img {
+            width: 100%;
+        }
     </style>
 </head>
 <body>  
@@ -148,6 +152,11 @@
             <div class="post-body">
                 <br>
                 {{$post->post}}
+                @if($post->img)
+                    <br><br>
+                    <img class="postimage" src="{{$post->img}}">
+                    <br>
+                @endif
                 <br><br>
             </div>
             <div class="post-buttons">

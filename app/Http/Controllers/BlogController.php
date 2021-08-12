@@ -36,11 +36,18 @@ class BlogController extends Controller
 
     public function addPost(Request $request) {
         $validated = $request->validate([
-            "newpost" => "required|string|min:5|max:500"
+            "newpost" => "required|string|min:5|max:500",
+            "image-note" => "image|mimes:jpg"
         ]);
 
         $newpost = new Post();
         $newpost->post = $request->input("newpost");
+
+        if($request->file("image-note")) {
+            $image = $request->file("image-note")->store("public");
+            $newpost->img = $image;
+        }
+
         $newpost->save();
     
         return redirect()->route("index");
