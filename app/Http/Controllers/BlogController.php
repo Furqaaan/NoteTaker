@@ -7,9 +7,31 @@ use App\Models\Post;
 
 class BlogController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
+
+        if($request->input("search")) {
+            $validated = $request->validate([
+                "search" => "required|string|min:3"
+            ]);
+            $searchTerm = $request->input("search");
+            $searchItems = Post::select("*")->where("post","LIKE","%".$searchTerm."%")->get();
+
+
+            if(count($searchItems)!=0) {
+                return view("search",compact('searchItems'));
+            }
+            else {
+                return redirect("/");
+            }
+        }
+
         $posts = Post::latest()->paginate(14);
         return view("index",compact('posts'));
+    }
+
+    public function searchPost(Request $request) {
+        $searchItems = "";
+        return view("search",compact('searchItems'));
     }
 
     public function addPost(Request $request) {
@@ -31,17 +53,19 @@ class BlogController extends Controller
 
     public function editPost(Request $request,$id) {
 
-        $validated = $request->validate([
-            "editpost" => "required|string|min:5|max:500"
-        ]);
-
-        Post::where("post_id",$id)
-            ->where("user_id",1)
-            ->update([
-                "post" => $request->input("editpost")
+        if($request->input("editpost")) {
+            $validated = $request->validate([
+                "editpost" => "required|string|min:5|max:500"
             ]);
 
-        return redirect("/");
+            Post::where("post_id",$id)
+                ->where("user_id",1)
+                ->update([
+                    "post" => $request->input("editpost")
+                ]);
+
+            return redirect()->route("index");
+        }
     }
 
 
