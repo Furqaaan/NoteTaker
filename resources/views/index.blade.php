@@ -171,6 +171,18 @@
             width: 100%;
         }
 
+        .logout-container {
+            position: absolute;
+            top: 0;
+            right:0;
+        }
+
+        .logout-button {
+            font-size: 10px;
+            border-radius: 0;
+            font-weight: bold;
+            padding: 6px;
+        }
     </style>
 </head>
 <body>  
@@ -221,6 +233,11 @@
         <div class="page-nav">
             <br>
             {{$posts->links("pagination::bootstrap-4")}}
+        </div>
+
+
+        <div class="logout-container">
+        <a href="{{url('logout')}}"><button type="button" class="btn btn-lg btn-danger logout-button">LOGOUT</button></a>
         </div>
 
     </div>
