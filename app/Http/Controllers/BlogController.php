@@ -4,29 +4,36 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
     public function index(Request $request) {
+        
+        if(Auth::check()) {
+            if($request->input("search")) {
+                $validated = $request->validate([
+                    "search" => "required|string|min:3"
+                ]);
+                $searchTerm = $request->input("search");
+                $searchItems = Post::select("*")->where("post","LIKE","%".$searchTerm."%")->get();
 
-        if($request->input("search")) {
-            $validated = $request->validate([
-                "search" => "required|string|min:3"
-            ]);
-            $searchTerm = $request->input("search");
-            $searchItems = Post::select("*")->where("post","LIKE","%".$searchTerm."%")->get();
 
-
-            if(count($searchItems)!=0) {
-                return view("search",compact('searchItems'));
+                if(count($searchItems)!=0) {
+                    return view("search",compact('searchItems'));
+                }
+                else {
+                    return redirect("/");
+                }
             }
-            else {
-                return redirect("/");
-            }
+
+            $posts = Post::latest()->paginate(14);
+            return view("index",compact('posts'));
+        }
+        else {
+            return redirect("index");
         }
 
-        $posts = Post::latest()->paginate(14);
-        return view("index",compact('posts'));
     }
 
     public function searchPost(Request $request) {
@@ -75,9 +82,9 @@ class BlogController extends Controller
         }
     }
 
-
     public function deletePost($id) {
         Post::where("post_id",$id)->delete();
         return redirect()->route("index");
     }
+
 }
