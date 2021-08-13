@@ -55,7 +55,7 @@ class BlogController extends Controller
         $newpost = new Post();
         $newpost->user_id = session()->get("userid");
         $newpost->post = $request->input("newpost");
-
+        $newpost->categories = $request->input("categories");
         if($request->file("image-note")) {
             $image = $request->file("image-note")->store("public");
             $newpost->img = $image;

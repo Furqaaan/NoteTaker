@@ -105,7 +105,7 @@
             font-weight: bold;
         }
 
-        .post-id {
+        .post-category {
             padding: 3px 12px;
             position:absolute;
             top:0px;
@@ -246,7 +246,7 @@
     <div class="container">
 
         <div class="profile-container">
-            <img src="https://www.wallpapertip.com/wmimgs/30-308464_cool-profile-pictures-1080p.jpg">
+            <img src="http://www.100hdwallpapers.com/wallpapers/1920x1080/comet_minimal-hd_wallpapers.jpg">
             <br>
             <h1>{{$name}}</h1>
             <br>
@@ -265,17 +265,17 @@
         </div>
 
         <div class="categories-container">
-            <a href="#">CODING</a>
-            <a href="#">MOVIES</a>
-            <a href="#">REMAINDER</a>
-            <a href="#">RANDOM</a>
-            <a href="#">FITNESS</a>
-            <a href="#">FOOD</a>
-            <a href="#">FUN</a>
-            <a href="#">GAMING</a>
-            <a href="#">SPORTS</a>
-            <a href="#">NEWS</a>
-            <a href="#">TECH</a>
+            <a href="{{url('category/coding')}}">CODING</a>
+            <a href="{{url('category/movies')}}">MOVIES</a>
+            <a href="{{url('category/remainder')}}">REMAINDER</a>
+            <a href="{{url('category/random')}}">RANDOM</a>
+            <a href="{{url('category/fitness')}}">FITNESS</a>
+            <a href="{{url('category/food')}}">FOOD</a>
+            <a href="{{url('category/fun')}}">FUN</a>
+            <a href="{{url('category/gaming')}}">GAMING</a>
+            <a href="{{url('category/sports')}}">SPORTS</a>
+            <a href="{{url('category/news')}}">NEWS</a>
+            <a href="{{url('category/tech')}}">TECH</a>
         </div>
 
         <div class="newpost-container">
@@ -305,7 +305,7 @@
 
         @foreach($posts as $post)
         <div class="post-container">
-            <span class="post-id">#{{$post->post_id}}</span>
+            <span class="post-category">#{{$post->categories}}</span>
             <span class="post-date">{{Str::of($post->created_at)->substr(0,10)}}</span>
             <span class="post-time">{{Str::of($post->created_at)->substr(10,20)}}</span>
             <div class="post-body">

@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger("user_id")->default(1);
             $table->foreign("user_id")->references("id")->on("users");
             $table->string("post",1000);
+            $table->string("categories");
             $table->string("img")->nullable();
             $table->date("date")->default(now());
             $table->timestamps();
