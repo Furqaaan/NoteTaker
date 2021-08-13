@@ -265,6 +265,7 @@
         </div>
 
         <div class="categories-container">
+            <a href="{{url('index')}}">HOME</a>
             <a href="{{url('category/coding')}}">CODING</a>
             <a href="{{url('category/movies')}}">MOVIES</a>
             <a href="{{url('category/remainder')}}">REMAINDER</a>
@@ -313,7 +314,7 @@
                 {{$post->post}}
                 @if($post->img)
                     <br><br>
-                    <img class="postimage" src="{{$post->img}}">
+                    <img class="postimage" src="{{route('index').'/'.$post->img}}">
                     <br>
                 @endif
                 <br><br>
