@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
@@ -31,7 +32,8 @@ class BlogController extends Controller
 
             //display posts
             $posts = Post::where("user_id",session()->get("userid"))->latest()->paginate(14);
-            return view("index",compact('posts'));
+            $name = User::select("name")->where("id",session()->get("userid"))->value("name");
+            return view("index",compact('posts','name'));
         }
         else {
             return redirect("index");

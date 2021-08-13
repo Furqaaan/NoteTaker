@@ -173,20 +173,50 @@
 
         .logout-container {
             position: absolute;
-            top: 0;
-            right:0;
-        }
+            bottom: 0;
+            left: 100px;
+        } 
 
         .logout-button {
             font-size: 10px;
             border-radius: 0;
             font-weight: bold;
             padding: 6px;
+            border-bottom: 2px solid #c82333;
+        }
+
+        .profile-container {
+            background-color: white;
+            box-sizing: border-box;
+            width: 250px;
+            text-align: center;
+            position:fixed;
+            top:30%;
+            left:40px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .profile-container h1{
+            padding: 20px;
+        }
+
+        .profile-container img {
+            width: 100%;
         }
     </style>
 </head>
 <body>  
     <div class="container">
+
+        <div class="profile-container">
+            <img src="https://www.wallpapertip.com/wmimgs/30-308464_cool-profile-pictures-1080p.jpg">
+            <br>
+            <h1>{{$name}}</h1>
+            <br>
+            <div class="logout-container">
+                <a href="{{url('logout')}}"><button type="button" class="btn btn-lg btn-danger logout-button">LOGOUT</button></a>
+            </div>
+        </div>
 
         <div class="search-container">
             <form method="get">
@@ -236,9 +266,7 @@
         </div>
 
 
-        <div class="logout-container">
-        <a href="{{url('logout')}}"><button type="button" class="btn btn-lg btn-danger logout-button">LOGOUT</button></a>
-        </div>
+        
 
     </div>
 </body>
