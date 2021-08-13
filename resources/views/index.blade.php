@@ -152,7 +152,7 @@
 
         input[type="file"]::before {
             content: "add image";
-            background-color: #4D757D;
+            background-color: #6A75B4;
             color: white;
             font-weight: bold;
             text-transform: uppercase;
@@ -160,6 +160,7 @@
             border: 0;
             padding: 10px;
             display: inline-block;
+            border-top: 1px solid #6A75B4;
         }
 
         input[type="file"]:hover::before {
@@ -203,6 +204,42 @@
         .profile-container img {
             width: 100%;
         }
+
+        select {
+            background-color: #00CCAB;
+            color: white;
+            padding: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            border: 0;
+            border-bottom: 2px solid #00CCAB;
+        }
+
+        .categories-container {
+            background-color: white;
+            width:250px;
+            position: fixed;
+            top:20%;
+            right:40px;
+            padding: 20px;
+            border-bottom: 1px solid #ccc;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .categories-container a{
+            display: block;
+            padding: 10px;
+            border-bottom: 1px solid #f3f3f3;
+            color:black;
+            text-decoration: none;
+
+        }
+
+        .categories-container a:hover {
+            background-color: #00CCAB;
+            color:white;
+        }
     </style>
 </head>
 <body>  
@@ -227,12 +264,40 @@
             </form>
         </div>
 
+        <div class="categories-container">
+            <a href="#">CODING</a>
+            <a href="#">MOVIES</a>
+            <a href="#">REMAINDER</a>
+            <a href="#">RANDOM</a>
+            <a href="#">FITNESS</a>
+            <a href="#">FOOD</a>
+            <a href="#">FUN</a>
+            <a href="#">GAMING</a>
+            <a href="#">SPORTS</a>
+            <a href="#">NEWS</a>
+            <a href="#">TECH</a>
+        </div>
+
         <div class="newpost-container">
             <form method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <textarea class="form-control" rows="5" name="newpost" placeholder="Add a new note ..."></textarea>
                 </div>
+                <select name="categories" id="categories">
+                    <option class="option" value="coding">CODING</option>
+                    <option value="movies">MOVIES</option>
+                    <option value="remainder">REMAINDER</option>
+                    <option value="random">RANDOM</option>
+                    <option value="fitness">FITNESS</option>
+                    <option value="food">FOOD</option>
+                    <option value="fun">FUN</option>
+                    <option value="gaming">GAMING</option>
+                    <option value="sports">SPORTS</option>
+                    <option value="news">NEWS</option>
+                    <option value="tech">TECH</option>
+                </select>
+                &nbsp;
                 <input type="file" name="image-note" value="1">
                 <button type="submit" class="btn btn-lg btn-primary" name="addpost">NOTE</button>
             </form>
@@ -264,9 +329,6 @@
             <br>
             {{$posts->links("pagination::bootstrap-4")}}
         </div>
-
-
-        
 
     </div>
 </body>
