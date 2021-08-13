@@ -11,12 +11,14 @@ class BlogController extends Controller
     public function index(Request $request) {
         
         if(Auth::check()) {
+
+            //search bar
             if($request->input("search")) {
                 $validated = $request->validate([
                     "search" => "required|string|min:3"
                 ]);
                 $searchTerm = $request->input("search");
-                $searchItems = Post::select("*")->where("post","LIKE","%".$searchTerm."%")->get();
+                $searchItems = Post::select("*")->where("post","LIKE","%".$searchTerm."%")->where("user_id",session()->get("userid"))->get();
 
 
                 if(count($searchItems)!=0) {
@@ -27,7 +29,8 @@ class BlogController extends Controller
                 }
             }
 
-            $posts = Post::latest()->paginate(14);
+            //display posts
+            $posts = Post::where("user_id",session()->get("userid"))->latest()->paginate(14);
             return view("index",compact('posts'));
         }
         else {
@@ -48,6 +51,7 @@ class BlogController extends Controller
         ]);
 
         $newpost = new Post();
+        $newpost->user_id = session()->get("userid");
         $newpost->post = $request->input("newpost");
 
         if($request->file("image-note")) {
@@ -61,7 +65,7 @@ class BlogController extends Controller
     }
 
     public function editView($id) {
-        $posts = Post::where("post_id",$id)->get();
+        $posts = Post::where("post_id",$id)->where("user_id",session()->get("userid"))->get();
         return view("edit",compact('posts'));
     }
 
@@ -73,7 +77,7 @@ class BlogController extends Controller
             ]);
 
             Post::where("post_id",$id)
-                ->where("user_id",1)
+                ->where("user_id",session()->get("userid"))
                 ->update([
                     "post" => $request->input("editpost")
                 ]);
@@ -83,7 +87,7 @@ class BlogController extends Controller
     }
 
     public function deletePost($id) {
-        Post::where("post_id",$id)->delete();
+        Post::where("post_id",$id)->where("user_id",session()->get("userid"))->delete();
         return redirect()->route("index");
     }
 

@@ -23,6 +23,7 @@
             box-sizing: border-box;
             margin: 250px auto;
             border-bottom: 1px solid #ccc;
+            font-family: monospace;
         }
 
         .login-container input{
@@ -33,11 +34,12 @@
         }
 
         .login-container input[type="submit"] {
-            background-color: #00A871;
+            background-color: #00CCAB;
+            border: 0;
         }
 
         .login-container input[type="submit"]:hover {
-            background-color: #008F73;
+            background-color: #4cacff;
         }
 
     </style>

@@ -21,6 +21,8 @@ class LoginController extends Controller
         ]);
         if(Auth::attempt($validated)) {
             session()->regenerate();
+            $userid = User::select("id")->where("email",$request->input("email"))->first();
+            session()->put("userid",$userid->id);
             return redirect()->route("index");
         }
         else {

@@ -141,7 +141,7 @@
     <div class="container">
 
     <div class="back-container">
-        <a href="route('index')"><button type="button" class="btn btn-lg btn-secondary back-button">BACK</button></a>
+        <a href="route('index')"><button type="button" class="btn btn-lg btn-secondary back-button">&#8629; BACK</button></a>
     </div>
 
     @foreach($searchItems as $post)

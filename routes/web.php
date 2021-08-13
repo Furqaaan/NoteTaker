@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ Route::get('delete/{id}',[BlogController::class,"deletePost"])->name("index.dele
 
 Route::get('login',[LoginController::class,"loginIndex"])->name("login");
 Route::post('login',[LoginController::class,"loginCheck"])->name("login.check");
+
+Route::get('test',[TestController::class,"test"])->name("test");
 
 Route::get('logout',[LoginController::class,"logout"])->name("logout");
 
