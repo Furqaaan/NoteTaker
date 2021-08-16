@@ -83,7 +83,7 @@
             font-weight: bold;
         }
 
-        .post-id {
+        .post-category {
             padding: 3px 12px;
             position:absolute;
             top:0px;
@@ -146,7 +146,7 @@
 
     @foreach($searchItems as $post)
         <div class="post-container">
-            <span class="post-id">#{{$post->post_id}}</span>
+            <span class="post-category">#{{$post->categories}}</span>
             <span class="post-date">{{Str::of($post->created_at)->substr(0,10)}}</span>
             <span class="post-time">{{Str::of($post->created_at)->substr(10,20)}}</span>
             <div class="post-body">

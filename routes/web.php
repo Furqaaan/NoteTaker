@@ -27,46 +27,47 @@ Route::post('edit/{id}',[BlogController::class,"editPost"])->name("index.edit.po
 
 Route::get('delete/{id}',[BlogController::class,"deletePost"])->name("index.delete")->middleware("auth");
 
-Route::get('login',[LoginController::class,"loginIndex"])->name("login");
-Route::post('login',[LoginController::class,"loginCheck"])->name("login.check");
+Route::get('login',[LoginController::class,"loginIndex"])->name("login")->middleware("guest");
+Route::post('login',[LoginController::class,"loginCheck"])->name("login.check")->middleware("guest");
 
-Route::get('test',[TestController::class,"test"])->name("test");
+Route::get('register',[LoginController::class,"registerIndex"])->name("register")->middleware("guest");
+Route::post('register',[LoginController::class,"registerStore"])->name("register.store")->middleware("guest");
 
-Route::get('logout',[LoginController::class,"logout"])->name("logout");
+Route::get('logout',[LoginController::class,"logout"])->name("logout")->middleware("auth");;
 
 
-Route::get('category/coding',[CategoriesController::class,"categoryView"]);
-Route::post('category/coding',[BlogController::class,"addPost"]);
+Route::get('category/coding',[CategoriesController::class,"categoryView"])->middleware("auth");;
+Route::post('category/coding',[BlogController::class,"addPost"])->middleware("auth");;
 
-Route::get('category/movies',[CategoriesController::class,"categoryView"]);
-Route::post('category/movies',[BlogController::class,"addPost"]);
+Route::get('category/movies',[CategoriesController::class,"categoryView"])->middleware("auth");;
+Route::post('category/movies',[BlogController::class,"addPost"])->middleware("auth");;
 
-Route::get('category/remainder',[CategoriesController::class,"categoryView"]);
-Route::post('category/remainder',[BlogController::class,"addPost"]);
+Route::get('category/remainder',[CategoriesController::class,"categoryView"])->middleware("auth");;
+Route::post('category/remainder',[BlogController::class,"addPost"])->middleware("auth");;
 
-Route::get('category/random',[CategoriesController::class,"categoryView"]);
-Route::post('category/random',[BlogController::class,"addPost"]);
+Route::get('category/random',[CategoriesController::class,"categoryView"])->middleware("auth");;
+Route::post('category/random',[BlogController::class,"addPost"])->middleware("auth");;
 
-Route::get('category/fitness',[CategoriesController::class,"categoryView"]);
-Route::post('category/fitness',[BlogController::class,"addPost"]);
+Route::get('category/fitness',[CategoriesController::class,"categoryView"])->middleware("auth");;
+Route::post('category/fitness',[BlogController::class,"addPost"])->middleware("auth");;
 
-Route::get('category/food',[CategoriesController::class,"categoryView"]);
-Route::post('category/food',[BlogController::class,"addPost"]);
+Route::get('category/food',[CategoriesController::class,"categoryView"])->middleware("auth");;
+Route::post('category/food',[BlogController::class,"addPost"])->middleware("auth");;
 
-Route::get('category/fun',[CategoriesController::class,"categoryView"]);
-Route::post('category/fun',[BlogController::class,"addPost"]);
+Route::get('category/fun',[CategoriesController::class,"categoryView"])->middleware("auth");;
+Route::post('category/fun',[BlogController::class,"addPost"])->middleware("auth");;
 
-Route::get('category/gaming',[CategoriesController::class,"categoryView"]);
-Route::post('category/gaming',[BlogController::class,"addPost"]);
+Route::get('category/gaming',[CategoriesController::class,"categoryView"])->middleware("auth");;
+Route::post('category/gaming',[BlogController::class,"addPost"])->middleware("auth");;
 
-Route::get('category/sports',[CategoriesController::class,"categoryView"]);
-Route::post('category/sports',[BlogController::class,"addPost"]);
+Route::get('category/sports',[CategoriesController::class,"categoryView"])->middleware("auth");;
+Route::post('category/sports',[BlogController::class,"addPost"])->middleware("auth");;
 
-Route::get('category/news',[CategoriesController::class,"categoryView"]);
-Route::post('category/news',[BlogController::class,"addPost"]);
+Route::get('category/news',[CategoriesController::class,"categoryView"])->middleware("auth");;
+Route::post('category/news',[BlogController::class,"addPost"])->middleware("auth");;
 
-Route::get('category/tech',[CategoriesController::class,"categoryView"]);
-Route::post('category/tech',[BlogController::class,"addPost"]);
+Route::get('category/tech',[CategoriesController::class,"categoryView"])->middleware("auth");;
+Route::post('category/tech',[BlogController::class,"addPost"])->middleware("auth");;
 
 Route::fallback(function() {
     return redirect("/");

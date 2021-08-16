@@ -219,7 +219,7 @@
             background-color: white;
             width:250px;
             position: fixed;
-            top:20%;
+            top:15%;
             right:40px;
             padding: 20px;
             border-bottom: 1px solid #ccc;
@@ -248,7 +248,7 @@
         <div class="profile-container">
             <img src="http://www.100hdwallpapers.com/wallpapers/1920x1080/comet_minimal-hd_wallpapers.jpg">
             <br>
-            <h1>{{$name}}</h1>
+            <h1>{{ucwords($name)}}</h1>
             <br>
             <div class="logout-container">
                 <a href="{{url('logout')}}"><button type="button" class="btn btn-lg btn-danger logout-button">LOGOUT</button></a>

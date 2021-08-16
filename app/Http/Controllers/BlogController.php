@@ -16,10 +16,10 @@ class BlogController extends Controller
             //search bar
             if($request->input("search")) {
                 $validated = $request->validate([
-                    "search" => "required|string|min:3"
+                    "search" => "required|string"
                 ]);
                 $searchTerm = $request->input("search");
-                $searchItems = Post::select("*")->where("post","LIKE","%".$searchTerm."%")->where("user_id",session()->get("userid"))->get();
+                $searchItems = Post::select("*")->where("post","LIKE","%".$searchTerm."%")->where("user_id",session()->get("userid"))->latest()->get();
 
 
                 if(count($searchItems)!=0) {

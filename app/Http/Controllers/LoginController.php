@@ -30,6 +30,26 @@ class LoginController extends Controller
         }
     }
 
+    public function registerIndex() {
+        return view("register");
+    }
+
+    public function registerStore(Request $request) {
+        $validated = $request->validate([
+            "name" => "required|string|min:3|max:50",
+            "email" => "required|email|unique:users,email",
+            "password" => "required|string|confirmed"
+        ]);
+
+        $user = new User();
+        $user->name = $request->input("name");
+        $user->email = $request->input("email");
+        $user->password = bcrypt($request->input("password"));
+        $user->save();
+        
+        return redirect("index");
+    }
+
     public function logout() {
         Auth::logout();
         session()->flush();
